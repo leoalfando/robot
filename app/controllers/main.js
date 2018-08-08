@@ -1,6 +1,3 @@
-
-const S = require('string');
-
 const COMMAND_PLACE = "PLACE";
 const COMMAND_MOVE = "MOVE";
 
@@ -13,11 +10,11 @@ const COMMAND_REPORT = "REPORT";
 module.exports = {
     processInput : (object, input) => {
         input = input.toString().trim().toUpperCase();
-        input = S(input).splitLeft(' ');
-      
+        input = input.split(" ");
+
         switch(input[0]){
           case COMMAND_PLACE:
-            let params = S(input[1]).splitLeft(',');
+            let params = input[1].split(',');
             return object.place(params);
             break;
           case COMMAND_MOVE:

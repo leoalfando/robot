@@ -1,6 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect; // we are using the "expect" style of Chai
 const Robot = require('../app/models/Robot');
+const processInput = require('../app/controllers/main').processInput;
 
 const CONSTANTS = require('../constants');
 
@@ -13,25 +14,26 @@ describe("PLACE will put the Robot on the table in position X,Y and facing NORTH
   
   it(`"PLACE" command should set the Robot on the table if x,y and orientation is valid`, function() {
       let robot = new Robot();
-      let result = PLACE_validResponse;
-      expect(result).to.equal(PLACE_validResponse);
+      let result = processInput(robot, PLACE_validInput);
+      expect(result).to.deep.equal(PLACE_validResponse);
   });
   
   it(`"PLACE" command should return false if orientation is invalid`, function() {
     let robot = new Robot();
-    let result = false;
+    let result = processInput(robot, PLACE_invalidXPosition);
     expect(result).to.equal(false);
   });
 
   it(`"PLACE" command should return false if x position is invalid (less than 0 or more than 4)`, function() {
     let robot = new Robot();
-    let result = false;
+    let result = processInput(robot, PLACE_invalidYPosition);
     expect(result).to.equal(false);
   });
 
   it(`"PLACE" command should return false if y position is invalid (less than 0 or more than 4)`, function() {
     let robot = new Robot();
-    let result = false;
+    let result = processInput(robot, PLACE_invalidOrientation);
     expect(result).to.equal(false);
   });
+
 });

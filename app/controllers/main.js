@@ -21,10 +21,10 @@ module.exports = {
             object.move();
             break;
           case COMMAND_TURN_LEFT:
-            object.turnLeft();
+            return object.turnLeft();
             break;
           case COMMAND_TURN_RIGHT:
-            object.turnRight();
+            return object.turnRight();
             break;
         }
     }

@@ -52,12 +52,15 @@ class Robot {
     }
     turnLeft(){
         console.log("do turn left");
+        return true;
     }
     turnRight(){
         console.log("do turn right");
+        return true;
     }
     move() {
         console.log("do move");
+        return true;
     }
 };
 

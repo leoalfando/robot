@@ -51,12 +51,26 @@ class Robot {
         }
     }
     turnLeft(){
-        console.log("do turn left");
-        return true;
+        let newOrientation = null;
+        if(this.orientation != null){
+            let newOrientation = this.orientation - 1;
+            if(newOrientation < 0){
+                newOrientation = CONSTANTS.ORIENTATION[CONSTANTS.ORIENTATION.length-1];
+            }
+            this.orientation = newOrientation;
+        }
+        return this;
     }
     turnRight(){
-        console.log("do turn right");
-        return true;
+        let newOrientation = null;
+        if(this.orientation != null){
+            let newOrientation = this.orientation + 1;
+            if(newOrientation >= CONSTANTS.ORIENTATION.length){
+                newOrientation = CONSTANTS.ORIENTATION[0];
+            }
+            this.orientation = newOrientation;
+        }
+        return this;
     }
     move() {
         console.log("do move");

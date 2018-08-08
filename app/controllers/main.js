@@ -1,8 +1,6 @@
 const COMMAND_PLACE = "PLACE";
 const COMMAND_MOVE = "MOVE";
 
-const LEFT = 0;
-const RIGHT = 1;
 const COMMAND_TURN_LEFT = "LEFT";
 const COMMAND_TURN_RIGHT = "RIGHT";
 const COMMAND_REPORT = "REPORT";

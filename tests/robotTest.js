@@ -39,18 +39,24 @@ describe("PLACE will put the Robot on the table in position X,Y and facing NORTH
 });
 
 describe("TURN LEFT/RIGHT will turn the Robot orientation", function() {
-  let validRobot = new Robot(3, 2, CONSTANTS.NORTH);
   let TURN_LEFT_validInput = "LEFT";
   let TURN_RIGHT_validInput = "RIGHT";
   it(`"LEFT" command should set the Robot on the table if x,y and orientation is valid`, function() {
+    let validRobot = new Robot(3, 2, CONSTANTS.NORTH);
+    let validReponse_TURN_LEFT = new Robot(3, 2, CONSTANTS.WEST);
+
     let result = processInput(validRobot, TURN_LEFT_validInput);
     
-    expect(result).to.deep.equal(true);
+    expect(result).to.deep.equal(validReponse_TURN_LEFT);
   });
   
   it(`"RIGHT" command should set the Robot on the table if x,y and orientation is valid`, function() {
+    let validRobot = new Robot(3, 2, CONSTANTS.NORTH);
+    let validReponse_TURN_RIGHT = new Robot(3, 2, CONSTANTS.EAST);
+
     let result = processInput(validRobot, TURN_RIGHT_validInput);
-    
-    expect(result).to.deep.equal(true);
+
+    expect(result).to.deep.equal(validReponse_TURN_RIGHT);
   });
+
 });

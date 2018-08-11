@@ -3,9 +3,9 @@ const CONSTANTS = require('../../constants');
 
 class Robot {
     constructor(xPosition, yPosition, orientation) {
-        this.xPosition = parseInt(xPosition);
-        this.yPosition = parseInt(yPosition);
-        this.orientation = parseInt(orientation);
+        this.xPosition = xPosition ? parseInt(xPosition) : null;
+        this.yPosition = yPosition ? parseInt(yPosition) : null;
+        this.orientation = CONSTANTS.ORIENTATION.includes(orientation)? parseInt(orientation) : null;
     }
     setOrientation(orientationInput){
         switch(orientationInput){
@@ -22,31 +22,31 @@ class Robot {
             this.orientation = CONSTANTS.WEST;
             break;
         default:
-            throw 'ReaBot facing at invalid direction';
+            console.log('Robot facing at invalid direction');
         }
     }
     setXPosition(positionInput){
         if(positionInput < 0  || positionInput > CONSTANTS.TABLE_X_MAX-1){
-            throw('Invalid X Position, retry');
+            console.log('Invalid X Position, retry');
         }else{
             this.xPosition = positionInput;
         }
     }
     setYPosition(positionInput){
         if(positionInput < 0  || positionInput > CONSTANTS.TABLE_Y_MAX-1){
-            throw('Invalid Y Position, retry');
+            console.log('Invalid Y Position, retry');
         }else{
             this.yPosition = positionInput;
         }
     }
     place(params){
-        try {
-            this.setXPosition(parseInt(params[0]));
-            this.setYPosition(parseInt(params[1]));
-            this.setOrientation(params[2]);
+        this.setXPosition(parseInt(params[0]));
+        this.setYPosition(parseInt(params[1]));
+        this.setOrientation(params[2]);
+        if(this.checkRobot()){
             return this;
-        } catch (error) {
-            console.log(error);
+        }
+        else{
             return false;
         }
     }
@@ -72,13 +72,39 @@ class Robot {
         }
         return this;
     }
-    move() {
-        console.log('do move');
-        return true;
+    move() {        
+        switch(this.orientation){
+        case CONSTANTS.NORTH:
+            this.setYPosition(this.yPosition+1);
+            break;
+        case CONSTANTS.EAST:
+            this.setXPosition(this.xPosition+1);
+            break;
+        case CONSTANTS.SOUTH:
+            this.setYPosition(this.yPosition-1);
+            break;
+        case CONSTANTS.WEST:
+            this.setXPosition(this.xPosition-1);
+            break;
+        }
+        return this;
     }
     getReport() {
-        console.log('do get report');
-        return true;
+        if(this.orientation!==null){
+            console.log(`${this.xPosition},${this.yPosition},${CONSTANTS.TEXT_ORIENTATION[this.orientation]}`);
+            return true;
+        }else{
+            console.log('No robot on the table, place the robot');
+            return false;
+        }
+    }
+    checkRobot(){
+        if(this.xPosition === null || this.yPosition === null || this.orientation === null  ){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }
 

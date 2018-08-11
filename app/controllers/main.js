@@ -12,8 +12,13 @@ module.exports = {
         let params = null;
         switch (input[0]) {
         case COMMAND_PLACE:
-            params = input[1].split(',');
-            return object.place(params);
+            if(input[1]!==undefined){
+                params = input[1].split(',');
+                return object.place(params);
+            }else{
+                console.log('Invalid PLACE input eg: "PLACE 0,0,NORTH"');
+                return false;
+            }
         case COMMAND_MOVE:
             return object.move();
         case COMMAND_TURN_LEFT:

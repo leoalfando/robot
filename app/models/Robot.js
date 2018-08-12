@@ -91,7 +91,7 @@ class Robot {
     }
     getReport() {
         if(this.orientation!==null){
-            console.log(`${this.xPosition},${this.yPosition},${CONSTANTS.TEXT_ORIENTATION[this.orientation]}`);
+            console.log(`Robot position: ${this.xPosition},${this.yPosition},${CONSTANTS.TEXT_ORIENTATION[this.orientation]}`);
             return true;
         }else{
             console.log('No robot on the table, place the robot');

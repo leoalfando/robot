@@ -27,7 +27,6 @@ Install the dependencies and devDependencies and start the server.
 ```sh
 $ cd robot
 $ npm install -d
-$ node app
 ```
 
 ### Testing
@@ -35,5 +34,53 @@ $ node app
 To test the functionality the dependencies and devDependencies and start the server.
 
 ```sh
-$ mocha ./tests/robottest
+$ npm test
 ```
+
+### Usages
+
+To start the application.
+
+```sh
+$ npm start
+```
+
+Commands:
+1. PLACE : will put the toy robot on the table in position X,Y and facing NORTH,
+  SOUTH, EAST or WEST.
+example : 
+```sh
+$ PLACE 0,0,NORTH
+```
+
+2. MOVE : move the toy robot one unit forward in the direction it is
+  currently facing.
+example : 
+```sh
+$ PLACE 0,0,NORTH 
+#then
+$ MOVE
+#will re-position toy robot to 0,1,NORTH
+```
+3. LEFT and RIGHT: will rotate the robot 90 degrees in the specified direction
+  without changing the position of the robot.
+example: 
+```sh
+$ PLACE 0,0,NORTH 
+#then
+$ LEFT
+#will re-position toy robot to 0,0,WEST
+```
+
+3 REPORT: will announce the X,Y and F of the robot.
+example:
+```sh
+$ PLACE 1,2,EAST
+$ MOVE
+$ MOVE
+$ LEFT
+$ MOVE
+$ REPORT
+```
+will show the user robot position (3,3,NORTH)
+
